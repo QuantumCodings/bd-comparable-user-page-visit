@@ -43,8 +43,12 @@ public class UserPageVisit implements Comparable<UserPageVisit> {
      */
     @Override
     public boolean equals(Object o) {
-        // PARTICIPANTS: implement equals method here (hint: you can use intellij's auto-generate).
-        return true;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserPageVisit that = (UserPageVisit) o;
+
+        return userId == that.userId && Objects.equals(page, that.page);
     }
 
     @Override
@@ -65,8 +69,10 @@ public class UserPageVisit implements Comparable<UserPageVisit> {
      */
     @Override
     public int compareTo(UserPageVisit other) {
-        // PARTICIPANTS: implement compareTo method here
-        return 0;
+        int userIdComparison = Long.compare(this.userId, other.userId);
+        if (userIdComparison != 0) return userIdComparison;
+
+        return this.page.compareTo(other.page);
     }
 
     @Override
